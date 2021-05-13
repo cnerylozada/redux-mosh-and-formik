@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { addBug, removeBugById } from "./redux/reducer";
+import { addBug, removeBugById, resolveBugById } from "./redux/reducer";
 import { store } from "./redux/store";
 
 const App = () => {
@@ -10,8 +10,10 @@ const App = () => {
 
     store.dispatch(addBug("mi first bug!"));
     store.dispatch(addBug("mi second bug!"));
+    store.dispatch(addBug("mi third bug!"));
 
     store.dispatch(removeBugById(1));
+    store.dispatch(resolveBugById(3));
   });
   return <div className="App"></div>;
 };
