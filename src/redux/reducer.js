@@ -1,6 +1,20 @@
 const bugAdded = "BUG_ADDED";
 const bugRemoved = "BUG_REMOVED";
 
+export const addBug = (description) => ({
+  type: bugAdded,
+  payload: {
+    description,
+  },
+});
+
+export const removeBugById = (id) => ({
+  type: bugRemoved,
+  payload: {
+    id,
+  },
+});
+
 const initialState = [];
 let idCounter = 0;
 
