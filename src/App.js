@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { addBug, removeBugById, resolveBugById } from "./redux/reducer";
 import { store } from "./redux/store";
+import { LayoutPage } from "./pages";
 
 const App = () => {
   useEffect(() => {
@@ -15,7 +16,11 @@ const App = () => {
     store.dispatch(removeBugById(1));
     store.dispatch(resolveBugById(3));
   });
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <LayoutPage />
+    </div>
+  );
 };
 
 export default App;
