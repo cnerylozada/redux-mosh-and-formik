@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { addBug, removeBugById, resolveBugById } from "./redux/reducer";
 import { store } from "./redux/store";
-import { LayoutPage } from "./pages";
+import { FormPage, LayoutPage } from "./pages";
 
 const App = () => {
   useEffect(() => {
@@ -18,6 +18,7 @@ const App = () => {
   });
   return (
     <div className="App">
+      <FormPage />
       <LayoutPage />
     </div>
   );

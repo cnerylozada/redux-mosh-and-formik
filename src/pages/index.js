@@ -1,3 +1,4 @@
+import FormPage from "./form";
 import LayoutPage from "./layout";
 
-export { LayoutPage };
+export { FormPage, LayoutPage };
