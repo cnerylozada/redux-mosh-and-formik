@@ -1,25 +1,15 @@
 import { useFormikContext } from "formik";
 import React from "react";
 
-const AppInput = ({ name, onEmit, ...rest }) => {
-  const { handleChange, setFieldTouched, touched, errors, values, isValid } =
-    useFormikContext();
+const AppInput = ({ name, ...rest }) => {
   return (
     <>
       <input
-        type="text"
         name={name}
-        onChange={(_) => {
-          handleChange(_);
-          onEmit(values, isValid);
-        }}
-        onBlur={(_) => setFieldTouched(name)}
-        style={{ display: "block", width: "100%" }}
+        style={{ display: "block", width: "100%", padding: "8px" }}
         {...rest}
       />
-      {touched[name] && errors[name] && (
-        <p style={{ color: "red" }}>{errors[name]}</p>
-      )}
+      <p style={{ color: "red", margin: 0 }}>Error</p>
     </>
   );
 };

@@ -1,46 +1,43 @@
-import React from "react";
-import { Formik } from "formik";
+import React, { useEffect } from "react";
+import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import AppInput from "../components/app-input";
 
 const FormPage = () => {
-  const formValues = {
-    name: "cristh",
-    age: "19",
-  };
-
-  const validationSchema = Yup.object({
-    name: Yup.string().min(5, "Must be 5 characters or more").required(),
-    age: Yup.number().min(18).required(),
+  const formik = useFormik({
+    initialValues: {
+      amount: "",
+      quota: "",
+    },
+    validationSchema: Yup.object({
+      amount: Yup.string().min(5).required("Required"),
+      quota: Yup.number().min(2).required("Required"),
+    }),
   });
 
-  const onEmit = (values, isValid) => {
-    console.log(values, isValid);
-  };
+  useEffect(() => {
+    console.log(formik.values, formik.isValid);
+  }, [formik.values, formik.isValid]);
 
   return (
-    <div>
-      <h4>Formik</h4>
-      <Formik initialValues={formValues} validationSchema={validationSchema}>
-        {({ values }) => (
-          <>
-            <AppInput
-              name={"name"}
-              placeholder={"Enter name"}
-              value={values.name}
-              onEmit={onEmit}
-            />
-            <AppInput
-              name={"age"}
-              placeholder={"Enter age"}
-              value={values.age}
-              onEmit={onEmit}
-            />
-            <span>{JSON.stringify(values)}</span>
-          </>
-        )}
-      </Formik>
-    </div>
+    <form>
+      <div style={{ marginBottom: "15px" }}>
+        <AppInput
+          name="amount"
+          placeholder="Enter amount"
+          {...formik.getFieldProps("amount")}
+        />
+      </div>
+
+      <input name="quota" type="number" {...formik.getFieldProps("quota")} />
+      {formik.touched.quota && formik.errors.quota ? (
+        <div>{formik.errors.quota}</div>
+      ) : null}
+
+      <span>
+        {JSON.stringify(formik.values)} {JSON.stringify(formik.isValid)}
+      </span>
+    </form>
   );
 };
 
