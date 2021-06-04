@@ -11,7 +11,6 @@ const AppInput = ({ name, onEmit, ...rest }) => {
         name={name}
         onChange={(_) => {
           handleChange(_);
-          onEmit(values, isValid);
         }}
         onBlur={(_) => setFieldTouched(name)}
         style={{ display: "block", width: "100%" }}

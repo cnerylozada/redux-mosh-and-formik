@@ -5,8 +5,8 @@ import AppInput from "../components/app-input";
 
 const FormPage = () => {
   const formValues = {
-    name: "cristh",
-    age: "19",
+    name: "",
+    age: "",
   };
 
   const validationSchema = Yup.object({
@@ -14,31 +14,40 @@ const FormPage = () => {
     age: Yup.number().min(18).required(),
   });
 
-  const onEmit = (values, isValid) => {
-    console.log(values, isValid);
+  const onEmit = (values) => {
+    console.log(values);
   };
 
   return (
     <div>
       <h4>Formik</h4>
       <Formik initialValues={formValues} validationSchema={validationSchema}>
-        {({ values }) => (
-          <>
-            <AppInput
-              name={"name"}
-              placeholder={"Enter name"}
-              value={values.name}
-              onEmit={onEmit}
-            />
-            <AppInput
-              name={"age"}
-              placeholder={"Enter age"}
-              value={values.age}
-              onEmit={onEmit}
-            />
-            <span>{JSON.stringify(values)}</span>
-          </>
-        )}
+        {({ values, isValid }) => {
+          if (!!Object.values(values).every((_) => _ != "") && isValid) {
+            onEmit(values);
+          }
+          return (
+            <>
+              <div style={{ marginBottom: "10px" }}>
+                <AppInput
+                  name={"name"}
+                  placeholder={"Enter name"}
+                  value={values.name}
+                />
+              </div>
+              <div style={{ marginBottom: "10px" }}>
+                <AppInput
+                  name={"age"}
+                  placeholder={"Enter age"}
+                  value={values.age}
+                />
+              </div>
+              <span>
+                {JSON.stringify(values)} {JSON.stringify(isValid)}
+              </span>
+            </>
+          );
+        }}
       </Formik>
     </div>
   );
