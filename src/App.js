@@ -4,6 +4,7 @@ import { addBug } from "./redux/reducer";
 
 const App = () => {
   useEffect(() => {
+    store.subscribe(() => console.log("state change!"));
     store.dispatch(addBug("first bug"));
     console.log(store.getState());
   });
