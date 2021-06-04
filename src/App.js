@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import { createStore } from "./redux/custom-store";
+import store from "./redux/custom-store";
+import { addBug } from "./redux/reducer";
 
 const App = () => {
   useEffect(() => {
-    console.log(createStore().getState());
+    store.dispatch(addBug("first bug"));
+    console.log(store.getState());
   });
   return <div className="App"></div>;
 };
