@@ -32,6 +32,33 @@ const LayoutPage = () => {
 
   return (
     <div>
+      <p>
+        <tool-tip message="Para mas informacion puede visitar el enlace: right">
+          Tooltip right direction
+        </tool-tip>
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <tool-tip message="Lo mas top qweqeqweqweqweqw" direction="top">
+          Tooltip top direction
+        </tool-tip>
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <tool-tip
+          message="Para mas informacion puede visitar el enlace: left"
+          direction="left"
+        >
+          Tooltip left direction
+        </tool-tip>
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <tool-tip
+          message="Para mas informacion puede visitar el enlace: right"
+          direction="bottom"
+        >
+          Tooltip bottom direction
+        </tool-tip>
+      </p>
+
       {isModalBoxOpen && <modal-box ref={modalBox}></modal-box>}
       <p>
         <button onClick={() => setIsModalBoxOpen((_) => !_)}>
