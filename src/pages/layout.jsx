@@ -32,32 +32,10 @@ const LayoutPage = () => {
 
   return (
     <div>
-      <p>
-        <tool-tip message="Para mas informacion puede visitar el enlace: right">
-          Tooltip right direction
-        </tool-tip>
-      </p>
-      <p style={{ textAlign: "center" }}>
-        <tool-tip message="Lo mas top qweqeqweqweqweqw" direction="top">
-          Tooltip top direction
-        </tool-tip>
-      </p>
-      <p style={{ textAlign: "center" }}>
-        <tool-tip
-          message="Para mas informacion puede visitar el enlace: left"
-          direction="left"
-        >
-          Tooltip left direction
-        </tool-tip>
-      </p>
-      <p style={{ textAlign: "center" }}>
-        <tool-tip
-          message="Para mas informacion puede visitar el enlace: right"
-          direction="bottom"
-        >
-          Tooltip bottom direction
-        </tool-tip>
-      </p>
+      <flip-box>
+        <div slot="front-side">Front side</div>
+        <div slot="back-side">Back side</div>
+      </flip-box>
 
       {isModalBoxOpen && <modal-box ref={modalBox}></modal-box>}
       <p>
@@ -65,7 +43,6 @@ const LayoutPage = () => {
           Open modal-box
         </button>
       </p>
-
       <div style={{ marginBottom: "1rem" }}>
         <menu-tabs tab-list={JSON.stringify(arrayData)}></menu-tabs>
       </div>
