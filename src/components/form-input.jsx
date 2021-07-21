@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-const FormInput = ({ name, value, handleChange }) => {
+const FormInput = ({ label, name, value, isDisabled, handleChange }) => {
   const field = useRef(null);
 
   useEffect(() => {
@@ -8,7 +8,13 @@ const FormInput = ({ name, value, handleChange }) => {
   }, []);
   return (
     <div>
-      <form-input ref={field} name={name} value={value} />
+      <form-input
+        ref={field}
+        is-disabled={isDisabled}
+        label={label}
+        name={name}
+        value={value}
+      />
     </div>
   );
 };
