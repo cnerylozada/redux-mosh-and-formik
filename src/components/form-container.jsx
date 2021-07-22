@@ -15,7 +15,7 @@ const FormContainer = ({
       }}
       validationSchema={validationSchema}
     >
-      {({ handleSubmit }) => <form onSubmit={handleSubmit}>{children}</form>}
+      {() => <>{children}</>}
     </Formik>
   );
 };

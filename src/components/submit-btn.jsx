@@ -2,9 +2,9 @@ import { useFormikContext } from "formik";
 import React from "react";
 
 const SubmitBtn = ({ disabled }) => {
-  const { handleSubmit } = useFormikContext();
+  const { handleSubmit, isValid } = useFormikContext();
   return (
-    <button onClick={handleSubmit} disabled={disabled}>
+    <button onClick={handleSubmit} disabled={disabled || !isValid}>
       Submit
     </button>
   );
