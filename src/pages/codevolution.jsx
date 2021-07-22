@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Formik, useFormik } from "formik";
-import { FormInput } from "../components";
+import { Formik } from "formik";
+import { FormInput, SubmitBtn } from "../components";
 import * as Yup from "yup";
 
 const Codevolution = () => {
   const [manage, setManage] = useState({ isLoading: false });
   const initialValues = {
-    name: "",
-    channel: "",
+    name: "cristh",
     email: "",
+    channel: "",
   };
 
   const validationSchema = Yup.object({
@@ -29,12 +29,10 @@ const Codevolution = () => {
   };
 
   return (
-    <div>
+    <div style={{ margin: "0 auto", width: "70%" }}>
       <Formik
         initialValues={initialValues}
-        onSubmit={(values, actions) => {
-          onSubmit(values);
-        }}
+        onSubmit={(values) => onSubmit(values)}
         validationSchema={validationSchema}
       >
         {({
@@ -45,17 +43,18 @@ const Codevolution = () => {
           handleSubmit,
           isValid,
         }) => (
-          <form onSubmit={handleSubmit}>
+          <>
             <div style={{ marginBottom: "1rem" }}>
               <FormInput
                 label="name"
                 name="name"
-                value={values.name}
+                placeholder="Enter your name"
                 isDisabled={manage.isLoading}
               />
             </div>
 
-            <div>
+            <div style={{ marginBottom: "1rem" }}>
+              <label>Email</label>
               <input
                 type="text"
                 name="email"
@@ -71,15 +70,13 @@ const Codevolution = () => {
               <FormInput
                 label="channel"
                 name="channel"
-                value={values.channel}
+                placeholder="Enter your youtube channel"
                 isDisabled={manage.isLoading}
               />
             </div>
 
-            <button type="submit" disabled={manage.isLoading || !isValid}>
-              Submit
-            </button>
-          </form>
+            <SubmitBtn disabled={manage.isLoading || !isValid} />
+          </>
         )}
       </Formik>
     </div>

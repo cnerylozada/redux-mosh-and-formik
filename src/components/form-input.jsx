@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { useFormikContext } from "formik";
 
-const FormInput = ({ label, name, value, isDisabled }) => {
+const FormInput = ({ name, isDisabled, ...rest }) => {
   const field = useRef(null);
-  const { touched, errors, handleBlur, handleChange } = useFormikContext();
+  const { touched, errors, handleBlur, handleChange, values } =
+    useFormikContext();
 
   useEffect(() => {
     field.current.addEventListener("onChange", handleChange);
@@ -14,12 +15,13 @@ const FormInput = ({ label, name, value, isDisabled }) => {
     <>
       <form-input
         ref={field}
-        is-disabled={isDisabled}
-        label={label}
         name={name}
-        value={value}
+        value={values[name]}
+        is-disabled={isDisabled}
+        have-errors={touched[name] && errors[name]}
+        error-message={errors[name]}
+        {...rest}
       />
-      {touched[name] && errors[name] ? <div>{errors[name]}</div> : null}
     </>
   );
 };
